@@ -1,17 +1,16 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
+import Filter from "./Filter";
 
-
-const Gallery = ({data}) => {
+const Gallery = ({ data }) => {
   return (
     <div>
-        {
-          data.map((item)=>(
-            <Image src={item.urls.small} width={500} height={500} alt='image'/>
-          ))
-        }
+      {/* <Filter /> */}
+      {/* {data.map((item) => (
+        <Image src={item.urls.small} width={500} height={500} alt="image" />
+      ))} */}
     </div>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

@@ -1,0 +1,209 @@
+@charset "UTF-8";
+/* Please ❤ this if you like it! 😊 */
+/* CSS Variables */
+:root {
+  --columns: 4;
+  --gap: 2rem;
+  --radius: 5px;
+}
+@media (max-width: 800px) {
+  :root {
+    --columns: 3;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --columns: 2;
+  }
+}
+@media (max-width: 400px) {
+  :root {
+    --columns: 1;
+  }
+}
+
+/* Reset Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: 1px dotted currentColor;
+}
+
+html {
+  /* font-size: clamp(8px, 0.8vw, 10px); */
+  /* min-size: 8px; max-size: 10px */
+  font-size: 10px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  background-color: #091929;
+}
+
+a,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* Main Pinterest Grid Container Style */
+.container {
+  display: block;
+  -moz-columns: var(--columns);
+  columns: var(--columns);
+  gap: var(--gap);
+  padding: 2rem;
+  max-width: 140rem;
+  margin: 0 auto;
+}
+.container > * {
+  -moz-column-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: var(--gap);
+}
+
+/* If your browser supports CSS { grid-template-rows: masonry }, Then these codes of the block will work */
+@supports (grid-template-rows: masonry) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: masonry;
+    align-tracks: start;
+    justify-content: space-evenly;
+  }
+  .container > * {
+    margin-bottom: 0;
+  }
+}
+/* Pinterest Cards/Blogs Style */
+.card {
+  display: grid;
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+@media (max-width: 400px) {
+  .card {
+    min-width: 20rem;
+  }
+}
+.card__image {
+  display: inline-block;
+  border-radius: var(--radius);
+  max-height: 30rem;
+  overflow: hidden;
+}
+.card__image img {
+  transition: transform linear;
+  transition-duration: 0.5s;
+}
+.card__content {
+  --border: 2px;
+  position: relative;
+  border-top: var(--border) solid #dadddc;
+  margin-top: 1em;
+  padding: 1em 0;
+}
+.card__content::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: var(--border);
+  background-color: #dadddc;
+}
+.card__title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.card__title--green {
+  color: #0c9838;
+}
+.card__title--blue {
+  color: #140a5e;
+}
+.card__title--pink {
+  color: #e9227d;
+}
+.card__title--orange {
+  color: #e8863f;
+}
+.card__text {
+  position: relative;
+  height: 1.5rem;
+  margin: 0 auto 0.5em;
+}
+.card__text:nth-of-type(1)::before {
+  transition-delay: 0.1s;
+}
+.card__text:nth-of-type(2)::before {
+  transition-delay: 0.2s;
+}
+.card__text:nth-of-type(3)::before {
+  transition-delay: 0.3s;
+}
+.card__text:nth-of-type(4)::before {
+  transition-delay: 0.4s;
+}
+.card__text--100 {
+  width: 100%;
+}
+.card__text--70 {
+  width: 70%;
+}
+.card__text--50 {
+  width: 50%;
+}
+.card__text--30 {
+  width: 30%;
+}
+.card__text::before,
+.card__text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #cccccc;
+}
+.card__text::before {
+  left: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.card__text::after {
+  right: 0;
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform 1s;
+}
+.card:hover .card__text::before,
+.card:focus .card__text::before {
+  transform: scaleX(1);
+}
+.card:hover .card__text::after,
+.card:focus .card__text::after {
+  transform: scaleX(0);
+  transition: transform 0.1s;
+}
+.card:hover .card__image img,
+.card:focus .card__image img {
+  transform: scale(1.2);
+  transition-duration: 1s;
+}
